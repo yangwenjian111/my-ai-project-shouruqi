@@ -1,0 +1,76 @@
+/* ==========================================================================
+   记账簿 · 静态页
+   app.css —— 手写补充样式
+   设计稿图层样式（由 Ardot 导出、不要手改）见 style.css
+   目录：
+     1. 文本字体
+     2. 预览舞台与等比缩放
+     3. 交互态（点击反馈 / 分段控件选中 / 键盘按键）
+   ========================================================================== */
+
+/* ---------- 1. 文本字体 ---------- */
+/* 设计稿里用的是 Noto Sans SC；没装字体时自动退回苹方 / 微软雅黑 */
+.tx {
+  font-family: "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
+               system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.25;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+/* ---------- 2. 预览舞台与等比缩放 ---------- */
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #241d1a;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stage {
+  position: relative;
+  transform-origin: center center;
+  overflow: hidden;
+  background: #FFF8F0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+
+/* 画板从画布位置上搬过来，这里把画布平移清掉 */
+.page-frame {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  transform: none !important;
+}
+
+/* ---------- 3. 装饰性 SVG 不拦截点击 ---------- */
+/* Ardot 导出的 svg8 是纯装饰边框，覆盖在交互元素上方会拦截点击事件 */
+.svg8 {
+  pointer-events: none;
+}
+
+/* ---------- 4. 交互态 ---------- */
+.is-clickable {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.is-clickable:active {
+  opacity: .85;
+}
+
+/* 数字键盘按键按下 */
+.key-active {
+  background: #FBE6EE !important;
+}
+
+/* 输入框聚焦模拟 */
+.field-focus {
+  box-shadow: 0 0 0 2px rgba(242, 166, 192, .55) !important;
+}

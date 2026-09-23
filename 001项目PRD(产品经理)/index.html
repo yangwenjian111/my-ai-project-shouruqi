@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日常财务管理系统 — 产品展示</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+</head>
+<body>
+  <!-- p5.js 算法艺术背景画布容器 -->
+  <div id="art-canvas"></div>
+
+  <!-- ========== 导航栏 ========== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">🌸 日常记账</a>
+      <div class="nav-links">
+        <a href="#palette" class="nav-link">色彩</a>
+        <a href="#screens" class="nav-link">界面</a>
+        <a href="#components" class="nav-link">组件</a>
+        <a href="#architecture" class="nav-link">架构</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== Hero 区域 ========== -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <div class="hero-badge">V1.0 产品展示</div>
+      <h1 class="hero-title">日常财务管理系统</h1>
+      <p class="hero-subtitle">一款面向个人的轻量级日常财务记录工具<br>帮助用户快速记录每日消费、掌握财务状况</p>
+      <div class="hero-tags">
+        <span class="tag">🎨 粉嫩温馨</span>
+        <span class="tag">⚡ 3秒记账</span>
+        <span class="tag">📊 可视化图表</span>
+        <span class="tag">💾 本地存储</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#screens" class="btn-primary">查看界面设计</a>
+        <a href="#palette" class="btn-secondary">探索色彩系统</a>
+      </div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>向下滚动</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ========== 色彩系统 ========== -->
+  <section class="section" id="palette">
+    <div class="container">
+      <h2 class="section-title">色彩系统</h2>
+      <p class="section-desc">粉嫩温馨的视觉基调，营造柔和、舒适、愉悦的使用氛围</p>
+
+      <h3 class="subsection-title">主色板</h3>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background:#F2A6C0"></div>
+          <div class="color-info"><strong>樱花粉</strong><code>#F2A6C0</code><span>品牌色 · 主按钮 · Tab选中</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#FDDDE6"></div>
+          <div class="color-info"><strong>蜜桃奶白</strong><code>#FDDDE6</code><span>卡片背景 · 选中态底色</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#E8849E"></div>
+          <div class="color-info"><strong>玫瑰粉</strong><code>#E8849E</code><span>按钮hover · 重要强调</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#FFD6A5"></div>
+          <div class="color-info"><strong>杏子橙</strong><code>#FFD6A5</code><span>收入标识 · 正向提示</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#B8E6D0"></div>
+          <div class="color-info"><strong>薄荷绿</strong><code>#B8E6D0</code><span>结余正数 · 预算安全</span></div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">中性色</h3>
+      <div class="color-grid">
+        <div class="color-card">
+          <div class="color-swatch" style="background:#FFF8F0;border:1px solid #F2E8E0"></div>
+          <div class="color-info"><strong>暖白背景</strong><code>#FFF8F0</code><span>页面整体背景</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#FFFFFF;border:1px solid #F2E8E0"></div>
+          <div class="color-info"><strong>卡片白</strong><code>#FFFFFF</code><span>卡片 · 弹窗背景</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#4A3728"></div>
+          <div class="color-info"><strong>暖棕主文字</strong><code>#4A3728</code><span>标题 · 正文</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#9C8578"></div>
+          <div class="color-info"><strong>次文字</strong><code>#9C8578</code><span>说明文字 · 时间戳</span></div>
+        </div>
+        <div class="color-card">
+          <div class="color-swatch" style="background:#F2E8E0;border:1px solid #E8DDD5"></div>
+          <div class="color-info"><strong>分割线</strong><code>#F2E8E0</code><span>列表分割线 · 边框</span></div>
+        </div>
+      </div>
+
+      <h3 class="subsection-title">功能色 & 渐变</h3>
+      <div class="function-colors">
+        <div class="func-color-item">
+          <div class="func-swatch" style="background:#E8849E"></div>
+          <span>支出金额 <code>#E8849E</code></span>
+        </div>
+        <div class="func-color-item">
+          <div class="func-swatch" style="background:#7BC89C"></div>
+          <span>收入金额 <code>#7BC89C</code></span>
+        </div>
+        <div class="func-color-item">
+          <div class="func-swatch" style="background:#FFB347"></div>
+          <span>警告 <code>#FFB347</code></span>
+        </div>
+        <div class="func-color-item">
+          <div class="func-swatch" style="background:#C9B8E6"></div>
+          <span>图表辅助 <code>#C9B8E6</code></span>
+        </div>
+        <div class="func-color-item gradient-demo">
+          <div class="func-swatch fab-gradient"></div>
+          <span>FAB渐变 <code>#F2A6C0→#FFD6A5</code></span>
+        </div>
+        <div class="func-color-item gradient-demo">
+          <div class="func-swatch card-gradient"></div>
+          <span>卡片渐变 <code>#FDDDE6→#FFF8F0</code></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 界面展示 ========== -->
+  <section class="section section-alt" id="screens">
+    <div class="container">
+      <h2 class="section-title">界面展示</h2>
+      <p class="section-desc">五大核心页面，简洁高效的用户体验</p>
+
+      <div class="screen-tabs">
+        <button class="screen-tab active" data-screen="login">登录/注册</button>
+        <button class="screen-tab" data-screen="dashboard">首页</button>
+        <button class="screen-tab" data-screen="transactions">账单</button>
+        <button class="screen-tab" data-screen="statistics">统计</button>
+        <button class="screen-tab" data-screen="budget">预算</button>
+        <button class="screen-tab" data-screen="settings">设置</button>
+      </div>
+
+      <div class="phone-showcase">
+        <!-- 手机外框 -->
+        <div class="phone-frame">
+          <div class="phone-notch"></div>
+          <div class="phone-screen">
+
+            <!-- 登录页 -->
+            <div class="screen-content active" id="screen-login">
+              <div class="mock-login">
+                <div class="mock-login-logo">🌸</div>
+                <div class="mock-login-title">日常记账</div>
+                <div class="mock-login-welcome">欢迎回来，开始今天的记账吧</div>
+                <div class="mock-input"><span class="mock-input-icon">👤</span>用户名</div>
+                <div class="mock-input"><span class="mock-input-icon">🔒</span>密码<span class="mock-eye">👁</span></div>
+                <div class="mock-btn mock-btn-gradient">登 录</div>
+                <div class="mock-link">忘记密码？</div>
+                <div class="mock-link mock-link-pink">还没有账号？立即注册</div>
+              </div>
+            </div>
+
+            <!-- 首页 -->
+            <div class="screen-content" id="screen-dashboard">
+              <div class="mock-dashboard">
+                <div class="mock-header">
+                  <span class="mock-greeting">Hi, 记账达人 👋</span>
+                  <span class="mock-avatar-small">🐱</span>
+                </div>
+                <div class="mock-overview-card">
+                  <div class="mock-overview-title">9月 财务概览</div>
+                  <div class="mock-overview-row">
+                    <div class="mock-overview-item">
+                      <span class="mock-ov-label">收入</span>
+                      <span class="mock-ov-value income">+12,800</span>
+                    </div>
+                    <div class="mock-overview-item">
+                      <span class="mock-ov-label">支出</span>
+                      <span class="mock-ov-value expense">-6,432</span>
+                    </div>
+                    <div class="mock-overview-item">
+                      <span class="mock-ov-label">结余</span>
+                      <span class="mock-ov-value balance">+6,368</span>
+                    </div>
+                  </div>
+                  <div class="mock-budget-bar">
+                    <div class="mock-budget-track">
+                      <div class="mock-budget-fill" style="width:64%"></div>
+                    </div>
+                    <span class="mock-budget-text">预算已用 64%</span>
+                  </div>
+                </div>
+                <div class="mock-section-title">近期账单</div>
+                <div class="mock-tx-group">
+                  <div class="mock-tx-date"><span>今天</span><span class="mock-tx-subtotal">-¥128.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🍜</span><span class="mock-tx-name">午餐</span><span class="mock-tx-amount expense">-¥32.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🚗</span><span class="mock-tx-name">打车</span><span class="mock-tx-amount expense">-¥45.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🛒</span><span class="mock-tx-name">超市购物</span><span class="mock-tx-amount expense">-¥51.00</span></div>
+                </div>
+                <div class="mock-tx-group">
+                  <div class="mock-tx-date"><span>昨天</span><span class="mock-tx-subtotal">-¥86.50</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🍜</span><span class="mock-tx-name">晚餐聚餐</span><span class="mock-tx-amount expense">-¥68.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">📱</span><span class="mock-tx-name">话费充值</span><span class="mock-tx-amount expense">-¥18.50</span></div>
+                </div>
+                <div class="mock-fab">+</div>
+              </div>
+            </div>
+
+            <!-- 账单页 -->
+            <div class="screen-content" id="screen-transactions">
+              <div class="mock-transactions">
+                <div class="mock-page-title">账单</div>
+                <div class="mock-month-picker"><span>‹</span><span>2026年9月</span><span>›</span></div>
+                <div class="mock-search-bar">🔍 搜索备注...</div>
+                <div class="mock-filter-tags">
+                  <span class="mock-filter-tag active">全部</span>
+                  <span class="mock-filter-tag">支出</span>
+                  <span class="mock-filter-tag">收入</span>
+                </div>
+                <div class="mock-tx-group">
+                  <div class="mock-tx-date"><span>9月22日 周日</span><span class="mock-tx-subtotal">-¥128.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🍜</span><span class="mock-tx-name">午餐</span><span class="mock-tx-amount expense">-¥32.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🚗</span><span class="mock-tx-name">地铁</span><span class="mock-tx-amount expense">-¥5.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🛒</span><span class="mock-tx-name">日用品</span><span class="mock-tx-amount expense">-¥91.00</span></div>
+                </div>
+                <div class="mock-tx-group">
+                  <div class="mock-tx-date"><span>9月21日 周六</span><span class="mock-tx-subtotal">+¥12,800.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">💰</span><span class="mock-tx-name">9月工资</span><span class="mock-tx-amount income">+¥12,800.00</span></div>
+                </div>
+                <div class="mock-tx-group">
+                  <div class="mock-tx-date"><span>9月20日 周五</span><span class="mock-tx-subtotal">-¥256.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🎮</span><span class="mock-tx-name">游戏充值</span><span class="mock-tx-amount expense">-¥128.00</span></div>
+                  <div class="mock-tx-item"><span class="mock-tx-icon">🍜</span><span class="mock-tx-name">朋友聚餐</span><span class="mock-tx-amount expense">-¥128.00</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 统计页 -->
+            <div class="screen-content" id="screen-statistics">
+              <div class="mock-statistics">
+                <div class="mock-page-title">统计</div>
+                <div class="mock-stat-tabs">
+                  <span>周</span><span class="active">月</span><span>年</span>
+                </div>
+                <!-- 趋势图模拟 -->
+                <div class="mock-chart-card">
+                  <div class="mock-chart-title">支出趋势</div>
+                  <svg class="mock-line-chart" viewBox="0 0 280 100">
+                    <defs>
+                      <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#F2A6C0" stop-opacity="0.3"/>
+                        <stop offset="100%" stop-color="#F2A6C0" stop-opacity="0"/>
+                      </linearGradient>
+                    </defs>
+                    <path d="M0,80 L40,60 L80,70 L120,35 L160,45 L200,20 L240,30 L280,15" fill="none" stroke="#F2A6C0" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M0,80 L40,60 L80,70 L120,35 L160,45 L200,20 L240,30 L280,15 L280,100 L0,100 Z" fill="url(#chartGrad)"/>
+                    <circle cx="200" cy="20" r="4" fill="#E8849E"/>
+                  </svg>
+                </div>
+                <!-- 饼图模拟 -->
+                <div class="mock-chart-card">
+                  <div class="mock-chart-title">分类占比</div>
+                  <div class="mock-pie-container">
+                    <svg class="mock-pie-chart" viewBox="0 0 120 120">
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#F2A6C0" stroke-width="20" stroke-dasharray="94 220" stroke-dashoffset="0" transform="rotate(-90 60 60)"/>
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#FFD6A5" stroke-width="20" stroke-dasharray="63 251" stroke-dashoffset="-94" transform="rotate(-90 60 60)"/>
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#B8E6D0" stroke-width="20" stroke-dasharray="47 267" stroke-dashoffset="-157" transform="rotate(-90 60 60)"/>
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#C9B8E6" stroke-width="20" stroke-dasharray="31 283" stroke-dashoffset="-204" transform="rotate(-90 60 60)"/>
+                      <circle cx="60" cy="60" r="50" fill="none" stroke="#FDDDE6" stroke-width="20" stroke-dasharray="79 235" stroke-dashoffset="-235" transform="rotate(-90 60 60)"/>
+                    </svg>
+                    <div class="mock-pie-center">
+                      <span class="mock-pie-total-label">总支出</span>
+                      <span class="mock-pie-total-value">¥6,432</span>
+                    </div>
+                  </div>
+                  <div class="mock-pie-legend">
+                    <div class="legend-item"><span class="legend-dot" style="background:#F2A6C0"></span>餐饮 30%</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#FFD6A5"></span>购物 20%</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#B8E6D0"></span>居住 15%</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#C9B8E6"></span>娱乐 10%</div>
+                    <div class="legend-item"><span class="legend-dot" style="background:#FDDDE6"></span>其他 25%</div>
+                  </div>
+                </div>
+                <!-- 排行榜 -->
+                <div class="mock-chart-card">
+                  <div class="mock-chart-title">消费排行</div>
+                  <div class="mock-rank-item"><span class="rank-no">1</span><span class="rank-icon">🍜</span><span class="rank-name">餐饮</span><div class="rank-bar"><div class="rank-fill" style="width:85%;background:#F2A6C0"></div></div><span class="rank-amount">¥1,930</span></div>
+                  <div class="mock-rank-item"><span class="rank-no">2</span><span class="rank-icon">🛒</span><span class="rank-name">购物</span><div class="rank-bar"><div class="rank-fill" style="width:65%;background:#FFD6A5"></div></div><span class="rank-amount">¥1,286</span></div>
+                  <div class="mock-rank-item"><span class="rank-no">3</span><span class="rank-icon">🏠</span><span class="rank-name">居住</span><div class="rank-bar"><div class="rank-fill" style="width:50%;background:#B8E6D0"></div></div><span class="rank-amount">¥965</span></div>
+                  <div class="mock-rank-item"><span class="rank-no">4</span><span class="rank-icon">🎮</span><span class="rank-name">娱乐</span><div class="rank-bar"><div class="rank-fill" style="width:35%;background:#C9B8E6"></div></div><span class="rank-amount">¥643</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 预算页 -->
+            <div class="screen-content" id="screen-budget">
+              <div class="mock-budget">
+                <div class="mock-page-title">预算</div>
+                <div class="mock-budget-main-card">
+                  <div class="mock-ring-progress">
+                    <svg viewBox="0 0 100 100">
+                      <circle cx="50" cy="50" r="40" fill="none" stroke="#FDDDE6" stroke-width="8"/>
+                      <circle cx="50" cy="50" r="40" fill="none" stroke="#F2A6C0" stroke-width="8" stroke-dasharray="161 251" stroke-dashoffset="63" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                    </svg>
+                    <div class="mock-ring-text">
+                      <span class="mock-ring-pct">64%</span>
+                      <span class="mock-ring-label">已使用</span>
+                    </div>
+                  </div>
+                  <div class="mock-budget-summary">
+                    <div class="mock-budget-row"><span>月预算</span><strong>¥10,000</strong></div>
+                    <div class="mock-budget-row"><span>已使用</span><strong class="expense">¥6,432</strong></div>
+                    <div class="mock-budget-row"><span>剩余</span><strong class="income">¥3,568</strong></div>
+                  </div>
+                </div>
+                <div class="mock-section-title">分类预算</div>
+                <div class="mock-cat-budget">
+                  <div class="mock-cat-budget-item">
+                    <div class="cat-budget-head"><span>🍜 餐饮</span><span>¥1,930 / ¥2,500</span></div>
+                    <div class="cat-budget-bar"><div class="cat-budget-fill warn" style="width:77%"></div></div>
+                  </div>
+                  <div class="mock-cat-budget-item">
+                    <div class="cat-budget-head"><span>🛒 购物</span><span>¥1,286 / ¥3,000</span></div>
+                    <div class="cat-budget-bar"><div class="cat-budget-fill safe" style="width:43%"></div></div>
+                  </div>
+                  <div class="mock-cat-budget-item">
+                    <div class="cat-budget-head"><span>🏠 居住</span><span>¥965 / ¥1,000</span></div>
+                    <div class="cat-budget-bar"><div class="cat-budget-fill danger" style="width:96%"></div></div>
+                    <div class="cat-budget-warn">⚠️ 即将超支</div>
+                  </div>
+                  <div class="mock-cat-budget-item">
+                    <div class="cat-budget-head"><span>🎮 娱乐</span><span>¥643 / ¥1,500</span></div>
+                    <div class="cat-budget-bar"><div class="cat-budget-fill safe" style="width:43%"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 设置页 -->
+            <div class="screen-content" id="screen-settings">
+              <div class="mock-settings">
+                <div class="mock-page-title">设置</div>
+                <div class="mock-user-card">
+                  <div class="mock-user-avatar">🐱</div>
+                  <div class="mock-user-info">
+                    <strong>记账达人</strong>
+                    <span>@user01</span>
+                  </div>
+                </div>
+                <div class="mock-settings-group">
+                  <div class="mock-settings-item">👤 修改昵称<span class="arrow">›</span></div>
+                  <div class="mock-settings-item">🖼 修改头像<span class="arrow">›</span></div>
+                  <div class="mock-settings-item">🔒 修改密码<span class="arrow">›</span></div>
+                </div>
+                <div class="mock-settings-group">
+                  <div class="mock-settings-item">📂 分类管理<span class="arrow">›</span></div>
+                  <div class="mock-settings-item">⚙️ 记账偏好<span class="arrow">›</span></div>
+                  <div class="mock-settings-item">💾 数据导出<span class="arrow">›</span></div>
+                  <div class="mock-settings-item">📥 数据导入<span class="arrow">›</span></div>
+                </div>
+                <div class="mock-settings-group">
+                  <div class="mock-settings-item">🎨 主题切换<span class="toggle"><span class="toggle-knob"></span></span></div>
+                  <div class="mock-settings-item">ℹ️ 关于<span class="arrow">›</span></div>
+                </div>
+                <div class="mock-settings-group">
+                  <div class="mock-settings-item logout">退出登录</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 屏幕说明 -->
+        <div class="screen-info" id="screen-info">
+          <h3 class="screen-info-title" id="screen-info-title">登录 / 注册页</h3>
+          <p class="screen-info-desc" id="screen-info-desc">全屏居中卡片布局，粉嫩渐变背景。支持用户名密码登录、注册新用户、忘记密码本地找回。输入框获焦时边框发出樱花粉柔和光芒。</p>
+          <ul class="screen-info-features" id="screen-info-features">
+            <li>渐变主色按钮（粉→橙）</li>
+            <li>密码强度实时指示器</li>
+            <li>本地 LocalStorage 存储</li>
+            <li>记住我 / 7天免登录</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 组件展示 ========== -->
+  <section class="section" id="components">
+    <div class="container">
+      <h2 class="section-title">组件规范</h2>
+      <p class="section-desc">统一的交互规范与视觉语言</p>
+
+      <div class="component-grid">
+        <!-- 按钮 -->
+        <div class="comp-card">
+          <h4>按钮</h4>
+          <div class="comp-demo">
+            <button class="demo-btn btn-grad">渐变主按钮</button>
+            <button class="demo-btn btn-outline">描边按钮</button>
+            <button class="demo-btn btn-disabled" disabled>禁用态</button>
+            <button class="demo-btn btn-danger">危险操作</button>
+          </div>
+          <p class="comp-note">圆角 12px · 渐变粉→橙 · 柔和阴影</p>
+        </div>
+
+        <!-- 输入框 -->
+        <div class="comp-card">
+          <h4>输入框</h4>
+          <div class="comp-demo">
+            <input type="text" class="demo-input" placeholder="默认状态">
+            <input type="text" class="demo-input focus" placeholder="获焦状态" value="聚焦时粉色发光">
+          </div>
+          <p class="comp-note">圆角 10px · 获焦樱花粉边框 + 发光</p>
+        </div>
+
+        <!-- 卡片 -->
+        <div class="comp-card">
+          <h4>卡片</h4>
+          <div class="comp-demo">
+            <div class="demo-card">
+              <div class="demo-card-header">概览卡片</div>
+              <div class="demo-card-body">浅粉渐变背景 #FDDDE6→#FFF8F0</div>
+            </div>
+          </div>
+          <p class="comp-note">圆角 16px · 暖色阴影 rgba(74,55,40,0.06)</p>
+        </div>
+
+        <!-- Toast -->
+        <div class="comp-card">
+          <h4>Toast 提示</h4>
+          <div class="comp-demo">
+            <div class="demo-toast success">✅ 保存成功</div>
+            <div class="demo-toast warning">⚠️ 预算即将不足</div>
+            <div class="demo-toast error">❌ 用户名或密码错误</div>
+          </div>
+          <p class="comp-note">1.5s 自动消失 · 轻量提示</p>
+        </div>
+
+        <!-- 进度条 -->
+        <div class="comp-card">
+          <h4>进度条</h4>
+          <div class="comp-demo">
+            <div class="demo-progress"><div class="demo-progress-fill safe" style="width:45%"></div></div>
+            <div class="demo-progress"><div class="demo-progress-fill warn" style="width:75%"></div></div>
+            <div class="demo-progress"><div class="demo-progress-fill danger" style="width:95%"></div></div>
+          </div>
+          <p class="comp-note">绿(&lt;60%) → 橙(60-90%) → 红(&gt;90%)</p>
+        </div>
+
+        <!-- 空状态 -->
+        <div class="comp-card">
+          <h4>空状态</h4>
+          <div class="comp-demo empty-demo">
+            <div class="empty-icon">📝</div>
+            <p>还没有账单记录</p>
+            <button class="demo-btn btn-grad btn-sm">立即记账</button>
+          </div>
+          <p class="comp-note">插画图标 + 引导文案 + 操作按钮</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 数据架构 ========== -->
+  <section class="section section-alt" id="architecture">
+    <div class="container">
+      <h2 class="section-title">信息架构</h2>
+      <p class="section-desc">清晰的模块划分与数据流转</p>
+
+      <div class="arch-grid">
+        <div class="arch-card">
+          <div class="arch-icon">🔐</div>
+          <h4>认证模块</h4>
+          <ul>
+            <li>本地注册 / 登录</li>
+            <li>sessionStorage 会话</li>
+            <li>记住我（7天免登）</li>
+            <li>安全问题找回密码</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">🏠</div>
+          <h4>首页 Dashboard</h4>
+          <ul>
+            <li>本月收支概览卡片</li>
+            <li>预算进度条</li>
+            <li>近7天账单流水</li>
+            <li>FAB 快速记账入口</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">📋</div>
+          <h4>账单管理</h4>
+          <ul>
+            <li>月度账单列表（按日分组）</li>
+            <li>搜索 & 多维筛选</li>
+            <li>详情 / 编辑 / 删除</li>
+            <li>左滑手势操作</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">📊</div>
+          <h4>统计分析</h4>
+          <ul>
+            <li>周/月/年趋势折线图</li>
+            <li>分类占比环形饼图</li>
+            <li>消费排行榜 Top10</li>
+            <li>数据点交互气泡</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">💰</div>
+          <h4>预算管理</h4>
+          <ul>
+            <li>月度总预算设置</li>
+            <li>分类预算 & 进度条</li>
+            <li>三级预警（安全/警告/危险）</li>
+            <li>超支首页提醒条</li>
+          </ul>
+        </div>
+        <div class="arch-card">
+          <div class="arch-icon">⚙️</div>
+          <h4>设置中心</h4>
+          <ul>
+            <li>个人信息 & 头像管理</li>
+            <li>分类增删改 & 拖拽排序</li>
+            <li>CSV 数据导入/导出</li>
+            <li>主题切换 & 偏好设置</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subsection-title" style="margin-top:48px">数据模型</h3>
+      <div class="model-grid">
+        <div class="model-card">
+          <div class="model-name">Transaction</div>
+          <div class="model-desc">账单记录</div>
+          <pre class="model-code"><code>id        : string
+type      : 'expense' | 'income'
+amount    : number
+categoryId: string
+date      : string (ISO 8601)
+note      : string
+createdAt : string
+updatedAt : string</code></pre>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Category</div>
+          <div class="model-desc">分类</div>
+          <pre class="model-code"><code>id       : string
+name     : string
+icon     : string
+type     : 'expense' | 'income'
+sortOrder: number
+isDefault: boolean</code></pre>
+        </div>
+        <div class="model-card">
+          <div class="model-name">Budget</div>
+          <div class="model-desc">预算</div>
+          <pre class="model-code"><code>id        : string
+categoryId: string
+amount    : number
+month     : string (YYYY-MM)</code></pre>
+        </div>
+        <div class="model-card">
+          <div class="model-name">User</div>
+          <div class="model-desc">用户信息</div>
+          <pre class="model-code"><code>id               : string
+username         : string (unique)
+nickname         : string
+password         : string (hash)
+avatar           : string
+securityQuestion?: string
+securityAnswer?  : string</code></pre>
+        </div>
+      </div>
+
+      <!-- 预设分类 -->
+      <h3 class="subsection-title" style="margin-top:48px">预设分类</h3>
+      <div class="category-showcase">
+        <div class="category-group">
+          <h4>支出分类</h4>
+          <div class="category-items">
+            <div class="cat-item"><span class="cat-emoji">🍜</span>餐饮</div>
+            <div class="cat-item"><span class="cat-emoji">🚗</span>交通</div>
+            <div class="cat-item"><span class="cat-emoji">🛒</span>购物</div>
+            <div class="cat-item"><span class="cat-emoji">🎮</span>娱乐</div>
+            <div class="cat-item"><span class="cat-emoji">🏠</span>居住</div>
+            <div class="cat-item"><span class="cat-emoji">💊</span>医疗</div>
+            <div class="cat-item"><span class="cat-emoji">📚</span>教育</div>
+            <div class="cat-item"><span class="cat-emoji">📱</span>通讯</div>
+            <div class="cat-item"><span class="cat-emoji">🎁</span>人情</div>
+            <div class="cat-item"><span class="cat-emoji">📌</span>其他</div>
+          </div>
+        </div>
+        <div class="category-group">
+          <h4>收入分类</h4>
+          <div class="category-items">
+            <div class="cat-item"><span class="cat-emoji">💰</span>工资</div>
+            <div class="cat-item"><span class="cat-emoji">💼</span>兼职</div>
+            <div class="cat-item"><span class="cat-emoji">📈</span>理财</div>
+            <div class="cat-item"><span class="cat-emoji">📌</span>其他</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 响应式适配 ========== -->
+  <section class="section" id="responsive">
+    <div class="container">
+      <h2 class="section-title">响应式适配</h2>
+      <p class="section-desc">手机 · 平板 · 桌面 三端自适应</p>
+      <div class="responsive-grid">
+        <div class="resp-card">
+          <div class="resp-icon">📱</div>
+          <strong>&lt; 768px 手机</strong>
+          <p>底部 Tab 导航<br>全宽内容区<br>增大触控区域</p>
+        </div>
+        <div class="resp-card">
+          <div class="resp-icon">📟</div>
+          <strong>768-1023px 平板</strong>
+          <p>底部 Tab 导航<br>全宽内容区<br>适度留白</p>
+        </div>
+        <div class="resp-card">
+          <div class="resp-icon">🖥</div>
+          <strong>≥ 1024px 桌面</strong>
+          <p>左侧固定侧边栏<br>内容区最大 800px 居中<br>更大信息密度</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 页脚 ========== -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>🌸 日常财务管理系统 — 产品展示</p>
+      <p class="footer-sub">基于 PRD V1.0 设计文档 · 粉嫩温馨视觉风格 · 算法艺术背景由 p5.js 生成</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

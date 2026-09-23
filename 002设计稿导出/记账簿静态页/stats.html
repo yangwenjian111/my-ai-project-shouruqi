@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>统计页 · 记账簿</title>
+<!-- style.css = 设计稿图层样式（Ardot 导出，改样式请优先用 app.css） -->
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body data-page="统计页">
+<!-- ===== 统计页：周/月/年切换、支出趋势折线图、分类占比环形图、消费排行 ===== -->
+<div class="stage" style="width:375px;height:812px">
+  <div class="layer0 layer70 page-frame" id="2:398">
+    <div class="layer89 layer90">
+      <div class="div0">
+        <div class="layer636"></div>
+        <div class="layer183" id="2:399" data-name="状态栏">
+          <div class="layer89 layer91">
+            <div class="div0">
+              <div class="layer211" id="2:399__layout" data-name="__layout">
+                <div class="layer212 layer213 tx" id="2:400" data-name="时间" style="font-size:15px;font-weight:600;color:#4A3728;width:auto;height:auto">9:41</div>
+                <div class="layer212 layer214" id="2:401" data-name="状态图标">
+                  <div class="layer89 layer92">
+                    <div class="div0">
+                      <div class="layer0 layer2" id="2:402" data-name="Vector">
+                        <div class="layer184">
+                          <svg class="svg2" width="12.5347" height="3.7079" viewBox="-0.7674 -0.75 12.5347 3.7079">
+                            <use href="#p7" fill="#4A3728"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="layer0 layer3" id="2:403" data-name="Vector">
+                        <div class="layer185">
+                          <svg class="svg3" width="5.6052" height="2.1803" viewBox="-0.8026 -0.75 5.6052 2.1803">
+                            <use href="#p8" fill="#4A3728"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="layer0 layer4" id="2:404" data-name="Rectangle">
+                        <div class="layer186">
+                          <svg class="svg4" width="22.6" height="11.6" viewBox="-1.3 -1.3 22.6 11.6">
+                            <rect width="20" height="9" rx="2.5" ry="2.5" fill="none" stroke="#4A3728" stroke-width="1.3"/>
+                          </svg>
+                        </div>
+                      </div>
+                      <div class="layer0 layer5" id="2:405" data-name="Rectangle">
+                        <div class="layer187">
+                          <div class="layer378"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layer0 layer23" id="2:406" data-name="内容">
+          <div class="layer89 layer109">
+            <div class="div0">
+              <div class="layer633" id="2:406__layout" data-name="__layout">
+                <div class="layer212 layer319" id="2:407" data-name="头部">
+                  <div class="layer89 layer153">
+                    <div class="div0">
+                      <div style="position:absolute;display:flex;flex-direction:row;justify-content:space-between;align-items:center;box-sizing:border-box;width:343px;height:29px" id="2:407__layout" data-name="__layout">
+                        <div class="layer212 layer300 tx" id="2:408" data-name="标题" style="font-size:20px;font-weight:600;color:#4A3728;width:auto;height:auto">统计</div>
+                        <div class="layer212 layer320 tx" id="2:409" data-name="当前月" style="font-size:13px;font-weight:400;color:#9C8578;width:auto;height:auto">2026年9月</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layer212 layer321" id="2:410" data-name="时间切换">
+                  <div style="position:absolute;top:0;left:0;width:343px;height:40px;background-color:#FDDDE6;border-radius:20px"></div>
+                  <div class="div1" id="2:410__clip_mask"></div>
+                  <div style="position:absolute;width:343px;height:40px;clip-path:url(#clip141)" id="2:410__clip" data-name="__clip">
+                    <div class="layer89 layer154">
+                      <div style="position:relative;top:0;left:0;display:flex;flex-direction:row;align-items:flex-start;gap:4px;box-sizing:border-box;width:343px;height:40px;padding:4px">
+                        <div class="layer212 layer322" id="2:411" data-name="周">
+                          <div class="div1" id="2:411__clip_mask"></div>
+                          <div style="position:absolute;width:109px;height:32px;clip-path:url(#clip142)" id="2:411__clip" data-name="__clip">
+                            <div class="layer89 layer155">
+                              <div class="flex0 flex14">
+                                <div class="layer212 layer323 tx" id="2:412" data-name="周文字" style="font-size:13px;font-weight:400;color:#9C8578;width:auto;height:auto">周</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer322" id="2:413" data-name="月">
+                          <div style="position:absolute;top:0;left:0;width:109px;height:32px;background-color:#FFFFFF;border-radius:16px"></div>
+                          <div class="div1" id="2:413__clip_mask"></div>
+                          <div style="position:absolute;width:109px;height:32px;clip-path:url(#clip143)" id="2:413__clip" data-name="__clip">
+                            <div class="layer89 layer155">
+                              <div class="flex0 flex14">
+                                <div class="layer212 layer323 tx" id="2:414" data-name="月文字" style="font-size:13px;font-weight:600;color:#E8849E;width:auto;height:auto">月</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer322" id="2:415" data-name="年">
+                          <div class="div1" id="2:415__clip_mask"></div>
+                          <div style="position:absolute;width:109px;height:32px;clip-path:url(#clip144)" id="2:415__clip" data-name="__clip">
+                            <div class="layer89 layer155">
+                              <div class="flex0 flex14">
+                                <div class="layer212 layer323 tx" id="2:416" data-name="年文字" style="font-size:13px;font-weight:400;color:#9C8578;width:auto;height:auto">年</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layer212 layer324" id="2:417" data-name="趋势卡片">
+                  <div style="position:absolute;top:0;left:0;width:343px;height:164px;background-color:#FFFFFF;border-radius:16px"></div>
+                  <div class="div1" id="2:417__clip_mask"></div>
+                  <div style="position:absolute;width:343px;height:164px;clip-path:url(#clip145)" id="2:417__clip" data-name="__clip">
+                    <div class="layer89 layer156">
+                      <div style="position:relative;top:0;left:0;display:flex;flex-direction:column;align-items:flex-start;gap:10px;box-sizing:border-box;width:343px;height:164px;padding:16px">
+                        <div class="layer212 layer325" id="2:418" data-name="趋势标题行">
+                          <div class="layer89 layer157">
+                            <div class="div0">
+                              <div class="layer628" id="2:418__layout" data-name="__layout">
+                                <div class="layer212 layer237 tx" id="2:419" data-name="趋势标题" style="font-size:15px;font-weight:600;color:#4A3728;width:auto;height:auto">支出趋势</div>
+                                <div class="layer212 layer326 tx" id="2:420" data-name="趋势副标题" style="font-size:12px;font-weight:400;color:#9C8578;width:auto;height:auto">近7日</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer327" id="2:421" data-name="折线图">
+                          <div class="layer89 layer158">
+                            <div class="div0">
+                              <div class="layer0 layer71" id="2:422" data-name="Vector">
+                                <svg style="position:absolute;top:-1.37px;left:-1.37px" width="297.7333" height="68.7333" viewBox="-1.3659 -1.3675 297.7333 68.7333">
+                                  <use href="#p146" fill="#F2A6C0"/>
+                                </svg>
+                              </div>
+                              <div class="layer0 layer72" id="2:423" data-name="Ellipse">
+                                <div style="position:absolute;top:0;left:0;width:8px;height:8px;background-color:#F2A6C0;border-radius:50%"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layer212 layer328" id="2:424" data-name="占比卡片">
+                  <div style="position:absolute;top:0;left:0;width:343px;height:176px;background-color:#FFFFFF;border-radius:16px"></div>
+                  <div class="div1" id="2:424__clip_mask"></div>
+                  <div style="position:absolute;width:343px;height:176px;clip-path:url(#clip147)" id="2:424__clip" data-name="__clip">
+                    <div class="layer89 layer159">
+                      <div style="position:relative;top:0;left:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px;box-sizing:border-box;width:343px;height:176px;padding:16px">
+                        <div class="layer212 layer325" id="2:425" data-name="占比标题行">
+                          <div class="layer89 layer157">
+                            <div class="div0">
+                              <div class="layer628" id="2:425__layout" data-name="__layout">
+                                <div class="layer212 layer237 tx" id="2:426" data-name="占比标题" style="font-size:15px;font-weight:600;color:#4A3728;width:auto;height:auto">分类占比</div>
+                                <div class="layer212 layer329 tx" id="2:427" data-name="总支出" style="font-size:12px;font-weight:400;color:#9C8578;width:auto;height:auto">总支出 ¥5,920</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer330" id="2:428" data-name="饼图区">
+                          <div class="layer89 layer160">
+                            <div class="div0">
+                              <div style="position:absolute;display:flex;flex-direction:row;align-items:center;gap:20px;box-sizing:border-box;width:311px;height:110px" id="2:428__layout" data-name="__layout">
+                                <div class="layer212 layer331" id="2:685" data-name="环形饼图">
+                                  <div class="layer89 layer161">
+                                    <div class="div0">
+                                      <div class="layer0 layer73" id="2:686" data-name="Ellipse">
+                                        <svg class="svg23" width="108" height="108" viewBox="-16 -16 108 108">
+                                          <ellipse cx="38" cy="38" rx="38" ry="38" fill="none" stroke="#F2A6C0" stroke-width="16" stroke-dasharray="95.5,143.3"/>
+                                        </svg>
+                                      </div>
+                                      <div class="layer0 layer73" id="2:687" data-name="Ellipse">
+                                        <svg class="svg23" width="108" height="108" viewBox="-16 -16 108 108">
+                                          <ellipse cx="38" cy="38" rx="38" ry="38" fill="none" stroke="#FFD6A5" stroke-width="16" stroke-dasharray="59.7,179.1" stroke-dashoffset="-95.5"/>
+                                        </svg>
+                                      </div>
+                                      <div class="layer0 layer73" id="2:688" data-name="Ellipse">
+                                        <svg class="svg23" width="108" height="108" viewBox="-16 -16 108 108">
+                                          <ellipse cx="38" cy="38" rx="38" ry="38" fill="none" stroke="#C9B8E6" stroke-width="16" stroke-dasharray="47.7,191.1" stroke-dashoffset="-155.2"/>
+                                        </svg>
+                                      </div>
+                                      <div class="layer0 layer73" id="2:689" data-name="Ellipse">
+                                        <svg class="svg23" width="108" height="108" viewBox="-16 -16 108 108">
+                                          <ellipse cx="38" cy="38" rx="38" ry="38" fill="none" stroke="#B8E6D0" stroke-width="16" stroke-dasharray="35.8,202.9" stroke-dashoffset="-202.9"/>
+                                        </svg>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer332" id="2:434" data-name="图例">
+                                  <div class="layer89 layer162">
+                                    <div class="div0">
+                                      <div style="position:absolute;display:flex;flex-direction:column;align-items:flex-start;gap:10px;box-sizing:border-box;width:181px;height:106px" id="2:434__layout" data-name="__layout">
+                                        <div class="layer212 layer333" id="2:435" data-name="图例1">
+                                          <div class="layer89 layer163">
+                                            <div class="div0">
+                                              <div class="layer592" id="2:435__layout" data-name="__layout">
+                                                <div class="layer212 layer334" id="2:436" data-name="点1">
+                                                  <div style="position:absolute;top:0;left:0;width:8px;height:8px;background-color:#F2A6C0;border-radius:4px"></div>
+                                                  <div class="div1" id="2:436__clip_mask"></div>
+                                                  <div style="position:absolute;clip-path:url(#clip148)" id="2:436__clip" data-name="__clip"></div>
+                                                </div>
+                                                <div class="layer212 layer335 tx" id="2:437" data-name="名称1" style="font-size:13px;font-weight:400;color:#4A3728;height:auto">餐饮</div>
+                                                <div class="layer212 layer336 tx" id="2:438" data-name="占比1" style="font-size:13px;font-weight:600;color:#9C8578;width:auto;height:auto">40%</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="layer212 layer333" id="2:439" data-name="图例2">
+                                          <div class="layer89 layer163">
+                                            <div class="div0">
+                                              <div class="layer592" id="2:439__layout" data-name="__layout">
+                                                <div class="layer212 layer334" id="2:440" data-name="点2">
+                                                  <div style="position:absolute;top:0;left:0;width:8px;height:8px;background-color:#FFD6A5;border-radius:4px"></div>
+                                                  <div class="div1" id="2:440__clip_mask"></div>
+                                                  <div style="position:absolute;clip-path:url(#clip149)" id="2:440__clip" data-name="__clip"></div>
+                                                </div>
+                                                <div class="layer212 layer335 tx" id="2:441" data-name="名称2" style="font-size:13px;font-weight:400;color:#4A3728;height:auto">购物</div>
+                                                <div class="layer212 layer336 tx" id="2:442" data-name="占比2" style="font-size:13px;font-weight:600;color:#9C8578;width:auto;height:auto">25%</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="layer212 layer333" id="2:443" data-name="图例3">
+                                          <div class="layer89 layer163">
+                                            <div class="div0">
+                                              <div class="layer592" id="2:443__layout" data-name="__layout">
+                                                <div class="layer212 layer334" id="2:444" data-name="点3">
+                                                  <div style="position:absolute;top:0;left:0;width:8px;height:8px;background-color:#C9B8E6;border-radius:4px"></div>
+                                                  <div class="div1" id="2:444__clip_mask"></div>
+                                                  <div style="position:absolute;clip-path:url(#clip150)" id="2:444__clip" data-name="__clip"></div>
+                                                </div>
+                                                <div class="layer212 layer335 tx" id="2:445" data-name="名称3" style="font-size:13px;font-weight:400;color:#4A3728;height:auto">交通</div>
+                                                <div class="layer212 layer336 tx" id="2:446" data-name="占比3" style="font-size:13px;font-weight:600;color:#9C8578;width:auto;height:auto">20%</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                        <div class="layer212 layer333" id="2:676" data-name="图例4">
+                                          <div class="layer89 layer163">
+                                            <div class="div0">
+                                              <div class="layer592" id="2:676__layout" data-name="__layout">
+                                                <div class="layer212 layer334" id="2:677" data-name="点4">
+                                                  <div style="position:absolute;top:0;left:0;width:8px;height:8px;background-color:#B8E6D0;border-radius:4px"></div>
+                                                  <div class="div1" id="2:677__clip_mask"></div>
+                                                  <div style="position:absolute;clip-path:url(#clip151)" id="2:677__clip" data-name="__clip"></div>
+                                                </div>
+                                                <div class="layer212 layer335 tx" id="2:678" data-name="名称4" style="font-size:13px;font-weight:400;color:#4A3728;height:auto">娱乐</div>
+                                                <div class="layer212 layer336 tx" id="2:679" data-name="占比4" style="font-size:13px;font-weight:600;color:#9C8578;width:auto;height:auto">15%</div>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="layer212 layer337" id="2:447" data-name="排行卡片">
+                  <div style="position:absolute;top:0;left:0;width:343px;height:198px;background-color:#FFFFFF;border-radius:16px"></div>
+                  <div class="div1" id="2:447__clip_mask"></div>
+                  <div style="position:absolute;width:343px;height:198px;clip-path:url(#clip152)" id="2:447__clip" data-name="__clip">
+                    <div class="layer89 layer164">
+                      <div style="position:relative;top:0;left:0;display:flex;flex-direction:column;align-items:flex-start;gap:12px;box-sizing:border-box;width:343px;height:198px;padding:16px">
+                        <div class="layer212 layer237 tx" id="2:448" data-name="排行标题" style="font-size:15px;font-weight:600;color:#4A3728;width:auto;height:auto">消费排行</div>
+                        <div class="layer212 layer338" id="2:449" data-name="排行1">
+                          <div class="layer89 layer165">
+                            <div class="div0">
+                              <div class="layer593" id="2:449__layout" data-name="__layout">
+                                <div class="layer212 layer241" id="2:450" data-name="名次1">
+                                  <div style="position:absolute;top:0;left:0;width:24px;height:24px;background-color:#F2A6C0;border-radius:12px"></div>
+                                  <div class="div1" id="2:450__clip_mask"></div>
+                                  <div style="position:absolute;width:24px;height:24px;clip-path:url(#clip153)" id="2:450__clip" data-name="__clip">
+                                    <div class="layer89 layer108">
+                                      <div class="flex0 flex15">
+                                        <div class="layer212 layer339 tx" id="2:451" data-name="名次文字1" style="font-size:13px;font-weight:700;color:#FFFFFF;width:auto;height:auto">1</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer340 tx" id="2:452" data-name="排行名1" style="font-size:14px;font-weight:400;color:#4A3728;height:auto">餐饮</div>
+                                <div class="layer212 layer341 tx" id="2:453" data-name="排行金额1" style="font-size:14px;font-weight:600;color:#E8849E;width:auto;height:auto">¥2,600</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer338" id="2:454" data-name="排行2">
+                          <div class="layer89 layer165">
+                            <div class="div0">
+                              <div class="layer593" id="2:454__layout" data-name="__layout">
+                                <div class="layer212 layer241" id="2:455" data-name="名次2">
+                                  <div style="position:absolute;top:0;left:0;width:24px;height:24px;background-color:#FFD6A5;border-radius:12px"></div>
+                                  <div class="div1" id="2:455__clip_mask"></div>
+                                  <div style="position:absolute;width:24px;height:24px;clip-path:url(#clip154)" id="2:455__clip" data-name="__clip">
+                                    <div class="layer89 layer108">
+                                      <div class="flex0 flex15">
+                                        <div class="layer212 layer339 tx" id="2:456" data-name="名次文字2" style="font-size:13px;font-weight:700;color:#FFFFFF;width:auto;height:auto">2</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer340 tx" id="2:457" data-name="排行名2" style="font-size:14px;font-weight:400;color:#4A3728;height:auto">购物</div>
+                                <div class="layer212 layer341 tx" id="2:458" data-name="排行金额2" style="font-size:14px;font-weight:600;color:#E8849E;width:auto;height:auto">¥1,480</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer338" id="2:459" data-name="排行3">
+                          <div class="layer89 layer165">
+                            <div class="div0">
+                              <div class="layer593" id="2:459__layout" data-name="__layout">
+                                <div class="layer212 layer241" id="2:460" data-name="名次3">
+                                  <div style="position:absolute;top:0;left:0;width:24px;height:24px;background-color:#C9B8E6;border-radius:12px"></div>
+                                  <div class="div1" id="2:460__clip_mask"></div>
+                                  <div style="position:absolute;width:24px;height:24px;clip-path:url(#clip155)" id="2:460__clip" data-name="__clip">
+                                    <div class="layer89 layer108">
+                                      <div class="flex0 flex15">
+                                        <div class="layer212 layer339 tx" id="2:461" data-name="名次文字3" style="font-size:13px;font-weight:700;color:#FFFFFF;width:auto;height:auto">3</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer342 tx" id="2:462" data-name="排行名3" style="font-size:14px;font-weight:400;color:#4A3728;height:auto">交通</div>
+                                <div class="layer212 layer343 tx" id="2:463" data-name="排行金额3" style="font-size:14px;font-weight:600;color:#E8849E;width:auto;height:auto">¥980</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer338" id="2:680" data-name="排行4">
+                          <div class="layer89 layer165">
+                            <div class="div0">
+                              <div class="layer593" id="2:680__layout" data-name="__layout">
+                                <div class="layer212 layer241" id="2:681" data-name="名次4">
+                                  <div style="position:absolute;top:0;left:0;width:24px;height:24px;background-color:#B8E6D0;border-radius:12px"></div>
+                                  <div class="div1" id="2:681__clip_mask"></div>
+                                  <div style="position:absolute;width:24px;height:24px;clip-path:url(#clip156)" id="2:681__clip" data-name="__clip">
+                                    <div class="layer89 layer108">
+                                      <div class="flex0 flex15">
+                                        <div class="layer212 layer339 tx" id="2:682" data-name="名次文字4" style="font-size:13px;font-weight:700;color:#FFFFFF;width:auto;height:auto">4</div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer342 tx" id="2:683" data-name="排行名4" style="font-size:14px;font-weight:400;color:#4A3728;height:auto">娱乐</div>
+                                <div class="layer212 layer343 tx" id="2:684" data-name="排行金额4" style="font-size:14px;font-weight:600;color:#E8849E;width:auto;height:auto">¥860</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="layer0 layer37" id="2:464" data-name="底部导航">
+          <div class="layer89 layer124">
+            <div class="div0">
+              <div class="layer637" id="2:464__layout" data-name="__layout">
+                <div class="layer212 layer274" id="2:465" data-name="导航胶囊">
+                  <div class="layer453"></div>
+                  <div class="layer396"></div>
+                  <div class="div1" id="2:465__clip_mask"></div>
+                  <div style="position:absolute;width:343px;height:62px;clip-path:url(#clip157)" id="2:465__clip" data-name="__clip">
+                    <div class="layer89 layer125">
+                      <div class="layer600">
+                        <div class="layer212 layer275" id="2:466" data-name="首页Tab">
+                          <div class="div1" id="2:466__clip_mask"></div>
+                          <div style="position:absolute;width:65px;height:54px;clip-path:url(#clip158)" id="2:466__clip" data-name="__clip">
+                            <div class="layer89 layer126">
+                              <div class="flex19 flex20">
+                                <div class="layer212 layer276" id="2:471" data-name="首页图标">
+                                  <div class="layer89 layer127">
+                                    <div class="div0">
+                                      <div class="layer0 layer38" id="2:481" data-name="Vector">
+                                        <div class="layer205">
+                                          <svg class="svg19" width="13.8679" height="7.0915" viewBox="-0.9339 -0.9076 13.8679 7.0915">
+                                            <use href="#p64" fill="#9C8578"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div class="layer0 layer39" id="2:482" data-name="Vector">
+                                        <div class="layer206">
+                                          <svg class="svg20" width="10.8217" height="7.6609" viewBox="-0.9109 0 10.8217 7.6609">
+                                            <use href="#p65" fill="#9C8578"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer277 tx" id="2:472" data-name="首页文字" style="font-size:10px;font-weight:400;color:#9C8578;width:auto;height:auto">首页</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer278" id="2:467" data-name="账单Tab">
+                          <div class="div1" id="2:467__clip_mask"></div>
+                          <div style="position:absolute;width:66px;height:54px;clip-path:url(#clip159)" id="2:467__clip" data-name="__clip">
+                            <div class="layer89 layer126">
+                              <div class="flex19 flex21">
+                                <div class="layer212 layer276" id="2:473" data-name="账单图标">
+                                  <div class="layer89 layer127">
+                                    <div class="div0">
+                                      <div class="layer0 layer40" id="2:483" data-name="Rectangle">
+                                        <div class="layer199">
+                                          <svg class="svg7" width="15.6" height="14.1" viewBox="-1.8 -1.8 15.6 14.1">
+                                            <rect width="12" height="10.5" rx="2" ry="2" fill="none" stroke="#9C8578" stroke-width="1.8"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div class="layer0 layer41" id="2:484" data-name="Vector">
+                                        <div class="layer200">
+                                          <svg class="svg6" width="7.8217" height="7.8217" viewBox="-0.9109 -0.9109 7.8217 7.8217">
+                                            <use href="#p67" fill="#9C8578"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer277 tx" id="2:474" data-name="账单文字" style="font-size:10px;font-weight:400;color:#9C8578;width:auto;height:auto">账单</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer275" id="2:468" data-name="统计Tab">
+                          <div class="layer397"></div>
+                          <div class="div1" id="2:468__clip_mask"></div>
+                          <div style="position:absolute;width:65px;height:54px;clip-path:url(#clip160)" id="2:468__clip" data-name="__clip">
+                            <div class="layer89 layer126">
+                              <div class="flex19 flex20">
+                                <div class="layer212 layer276" id="2:475" data-name="统计图标">
+                                  <div class="layer89 layer127">
+                                    <div class="div0">
+                                      <div class="layer0 layer42" id="2:485" data-name="Ellipse">
+                                        <svg class="svg7" width="15.6" height="15.6" viewBox="-1.8 -1.8 15.6 15.6">
+                                          <ellipse cx="6" cy="6" rx="6" ry="6" fill="none" stroke="#FFFFFF" stroke-width="1.8"/>
+                                        </svg>
+                                      </div>
+                                      <div class="layer0 layer43" id="2:486" data-name="Vector">
+                                        <svg class="svg6" width="7.1467" height="10.1467" viewBox="-0.9109 -0.9109 7.1467 10.1467">
+                                          <use href="#p69" fill="#FFFFFF"/>
+                                        </svg>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer277 tx" id="2:476" data-name="统计文字" style="font-size:10px;font-weight:600;color:#FFFFFF;width:auto;height:auto">统计</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer278" id="2:469" data-name="预算Tab">
+                          <div class="div1" id="2:469__clip_mask"></div>
+                          <div style="position:absolute;width:66px;height:54px;clip-path:url(#clip161)" id="2:469__clip" data-name="__clip">
+                            <div class="layer89 layer126">
+                              <div class="flex19 flex21">
+                                <div class="layer212 layer276" id="2:477" data-name="预算图标">
+                                  <div class="layer89 layer127">
+                                    <div class="div0">
+                                      <div class="layer0 layer44" id="2:487" data-name="Vector">
+                                        <div class="layer202">
+                                          <svg class="svg5" width="15.3" height="12.3" viewBox="-0.9 -0.9 15.3 12.3">
+                                            <use href="#p71" fill="#9C8578"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div class="layer638" id="2:488" data-name="Vector">
+                                        <div class="layer203">
+                                          <svg class="svg6" width="4.0717" height="1.8217" viewBox="-0.9109 -0.9109 4.0717 1.8217">
+                                            <use href="#p72" fill="#9C8578"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer277 tx" id="2:478" data-name="预算文字" style="font-size:10px;font-weight:400;color:#9C8578;width:auto;height:auto">预算</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="layer212 layer275" id="2:470" data-name="设置Tab">
+                          <div class="div1" id="2:470__clip_mask"></div>
+                          <div style="position:absolute;width:65px;height:54px;clip-path:url(#clip162)" id="2:470__clip" data-name="__clip">
+                            <div class="layer89 layer126">
+                              <div class="flex19 flex20">
+                                <div class="layer212 layer276" id="2:479" data-name="设置图标">
+                                  <div class="layer89 layer127">
+                                    <div class="div0">
+                                      <div class="layer0 layer45" id="2:489" data-name="Vector">
+                                        <div class="layer204">
+                                          <svg class="svg6" width="13.8217" height="9.3217" viewBox="-0.9109 -0.9109 13.8217 9.3217">
+                                            <use href="#p74" fill="#9C8578"/>
+                                          </svg>
+                                        </div>
+                                      </div>
+                                      <div class="layer0 layer46" id="2:490" data-name="Ellipse">
+                                        <div class="layer398"></div>
+                                      </div>
+                                      <div class="layer0 layer47" id="2:491" data-name="Ellipse">
+                                        <div class="layer398"></div>
+                                      </div>
+                                      <div class="layer0 layer48" id="2:492" data-name="Ellipse">
+                                        <div class="layer398"></div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="layer212 layer277 tx" id="2:480" data-name="设置文字" style="font-size:10px;font-weight:400;color:#9C8578;width:auto;height:auto">设置</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <svg class="svg8" width="347" height="66" viewBox="-2 -2 347 66">
+                    <defs>
+                      <clipPath id="sclip163">
+                        <rect width="343" height="62" rx="31"/>
+                      </clipPath>
+                    </defs>
+                    <g clip-path="url(#sclip163)">
+                      <rect width="343" height="62" rx="31" ry="31" fill="none" stroke="#F2E8E0" stroke-width="2"/>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="js/icons.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>记账簿 · 静态页总览</title>
+<style>
+  :root { --pink: #F2A6C0; --warm: #FFD6A5; --ink: #4A3728; --cream: #FFF8F0; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px/1.6 "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+         background: linear-gradient(160deg, #FCDEE6, #FFF7F0 60%); color: var(--ink); }
+  header { padding: 40px 32px 8px; }
+  header h1 { margin: 0 0 6px; font-size: 26px; }
+  header p { margin: 0; color: #8a7568; }
+  .grid { display: grid; gap: 24px; padding: 24px 32px 48px;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+  .idx-card { text-decoration: none; color: inherit; background: #fff;
+              border-radius: 16px; overflow: hidden;
+              box-shadow: 0 8px 24px rgba(74,55,40,.10); transition: .25s; display: block; }
+  .idx-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(74,55,40,.18); }
+  .idx-thumb { position: relative; height: 300px; overflow: hidden; background: #faf3ec; }
+  .idx-thumb iframe { position: absolute; top: 0; left: 50%; width: 375px; height: 812px;
+                      border: 0; transform: translateX(-50%) scale(.34); transform-origin: top center;
+                      pointer-events: none; }
+  .idx-meta { padding: 14px 16px; }
+  .idx-meta b { display: block; font-size: 15px; }
+  .idx-meta span { color: #8a7568; font-size: 12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>记账簿 · 静态页总览</h1>
+  <p>9 个页面均由 Ardot 设计稿一比一转换为 HTML/CSS，点击卡片可单独打开页面。</p>
+</header>
+<div class="grid">
+      <a class="idx-card" href="login.html">
+        <div class="idx-thumb"><iframe src="login.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>登录页</b><span>用户名 / 密码输入、登录按钮、注册入口</span></div>
+      </a>
+      <a class="idx-card" href="register.html">
+        <div class="idx-thumb"><iframe src="register.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>注册页</b><span>用户名 / 昵称 / 密码 / 确认密码、密码强度、头像选择</span></div>
+      </a>
+      <a class="idx-card" href="home.html">
+        <div class="idx-thumb"><iframe src="home.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>首页</b><span>问候语、本月概览卡片、近期账单列表、悬浮记账按钮、底部导航</span></div>
+      </a>
+      <a class="idx-card" href="quick-entry.html">
+        <div class="idx-thumb"><iframe src="quick-entry.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>快速记账面板</b><span>支出/收入切换、金额、分类网格、日期备注、数字键盘</span></div>
+      </a>
+      <a class="idx-card" href="bills.html">
+        <div class="idx-thumb"><iframe src="bills.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>账单页</b><span>月份切换、全部/支出/收入筛选、按日期分组的账单流水</span></div>
+      </a>
+      <a class="idx-card" href="bill-detail.html">
+        <div class="idx-thumb"><iframe src="bill-detail.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>账单详情</b><span>分类图标、金额、类型标签、信息卡片、编辑/删除</span></div>
+      </a>
+      <a class="idx-card" href="stats.html">
+        <div class="idx-thumb"><iframe src="stats.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>统计页</b><span>周/月/年切换、支出趋势折线图、分类占比环形图、消费排行</span></div>
+      </a>
+      <a class="idx-card" href="budget.html">
+        <div class="idx-thumb"><iframe src="budget.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>预算页</b><span>本月总预算环形进度、分类预算进度条</span></div>
+      </a>
+      <a class="idx-card" href="settings.html">
+        <div class="idx-thumb"><iframe src="settings.html" scrolling="no" loading="lazy" tabindex="-1"></iframe></div>
+        <div class="idx-meta"><b>设置页</b><span>个人信息、分类管理、记账偏好、数据导出、主题切换、关于</span></div>
+      </a>
+</div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>账单详情 - 日常记账</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="phone-frame">
+    <div class="page app-page active">
+      <!-- 遮罩层 -->
+      <div class="sheet-overlay active" onclick="closeDetail()">
+        <!-- 账单详情面板 -->
+        <div class="detail-sheet" onclick="event.stopPropagation()">
+          <div class="sheet-handle"></div>
+          
+          <!-- 分类图标 -->
+          <div class="detail-icon" style="background:#FDDDE6">
+            <svg width="32" height="32" viewBox="0 0 32 32"><path d="M8 16h16M12 12v8M20 12v8" stroke="#E8849E" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="16" cy="16" rx="12" ry="6" fill="none" stroke="#E8849E" stroke-width="2.5"/></svg>
+          </div>
+          
+          <!-- 分类名称 -->
+          <div class="detail-category">餐饮</div>
+          
+          <!-- 金额 -->
+          <div class="detail-amount expense">-¥45.00</div>
+          
+          <!-- 类型标签 -->
+          <div class="detail-type-tag expense">支出</div>
+          
+          <!-- 信息卡片 -->
+          <div class="detail-info-card">
+            <div class="info-row">
+              <span class="info-label">日期</span>
+              <span class="info-value">2026年9月20日 19:30</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">备注</span>
+              <span class="info-value">和同事聚餐</span>
+            </div>
+          </div>
+          
+          <!-- 操作按钮 -->
+          <div class="detail-actions">
+            <button class="action-btn edit">编辑</button>
+            <button class="action-btn delete">删除</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // 关闭详情页
+    function closeDetail() {
+      window.location.href = 'transactions.html';
+    }
+    
+    // 编辑按钮
+    document.querySelector('.action-btn.edit').addEventListener('click', function() {
+      alert('编辑功能');
+    });
+    
+    // 删除按钮
+    document.querySelector('.action-btn.delete').addEventListener('click', function() {
+      if (confirm('确定要删除这条记录吗？')) {
+        alert('已删除');
+        window.location.href = 'transactions.html';
+      }
+    });
+  </script>
+</body>
+</html>
