@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户详情 - 后台管理系统</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-brand"><h1>后台管理系统</h1><p>运维管理平台</p></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>数据总览</a>
+        <a href="users.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>用户管理</a>
+        <a href="reserve-funds.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>储备金管理</a>
+        <a href="transactions.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>账单数据</a>
+        <a href="categories.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>分类管理</a>
+      </nav>
+    </aside>
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="back-btn" onclick="location.href='users.html'" style="background:none;border:none;cursor:pointer;color:var(--text-secondary);font-size:13px;display:flex;align-items:center;gap:4px">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg> 返回用户列表
+          </button>
+          <span class="topbar-title" id="page-title">用户详情</span>
+        </div>
+        <div class="topbar-right">
+          <span class="topbar-user"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span id="admin-name">管理员</span></span>
+          <button class="btn-logout" onclick="handleLogout()">退出登录</button>
+        </div>
+      </header>
+      <div class="page-content" id="page-content">
+        <div class="loading"><div class="loading-spinner"></div><p>加载中...</p></div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+  <script>
+    if (!checkAuth()) throw '';
+    var userId = new URLSearchParams(location.search).get('id');
+    if (!userId) { location.href = 'users.html'; throw ''; }
+
+    var txPage = 1;
+    var txPageSize = 10;
+
+    apiFetch('/users/' + userId).then(function (data) {
+      var u = data.user;
+      var stats = data.txStats;
+      document.getElementById('page-title').textContent = '用户详情 - ' + u.nickname;
+
+      var html = '';
+
+      // 基本信息
+      html += '<div class="card" style="margin-bottom:16px"><div class="card-header"><h3>基本信息</h3></div><div class="card-body"><div class="detail-grid">';
+      html += detailItem('用户ID', u.id);
+      html += detailItem('用户名', u.username);
+      html += detailItem('昵称', u.nickname);
+      html += detailItem('头像', '<span class="avatar-dot ' + u.avatar + '"></span>' + u.avatar);
+      html += detailItem('状态', '<span class="badge ' + (u.status === 1 ? 'badge-success' : 'badge-danger') + '">' + formatStatus(u.status) + '</span>');
+      html += detailItem('注册时间', formatDate(u.createdAt));
+      html += detailItem('最近登录', u.lastLoginAt ? formatDate(u.lastLoginAt) : '-');
+      html += '</div></div></div>';
+
+      // 账单统计
+      html += '<div class="card" style="margin-bottom:16px"><div class="card-header"><h3>账单统计</h3></div><div class="card-body">';
+      html += '<div class="summary-row">';
+      html += summaryItem('总笔数', stats.totalCount);
+      html += summaryItem('总金额', formatAmount(stats.totalAmount));
+      html += summaryItem('支出总额', formatAmount(stats.expenseAmount));
+      html += summaryItem('储备金总额', formatAmount(stats.reserveAmount));
+      html += '</div>';
+
+      // 最近账单
+      if (data.recentTransactions.length > 0) {
+        html += '<h4 style="font-size:13px;font-weight:600;margin:16px 0 8px">最近5笔账单</h4>';
+        html += '<table><thead><tr><th>分类</th><th>类型</th><th>金额</th><th>日期</th><th>备注</th></tr></thead><tbody>';
+        data.recentTransactions.forEach(function (t) {
+          html += '<tr><td>' + t.categoryName + '</td><td><span class="badge ' + (t.type === 'expense' ? 'badge-danger' : 'badge-warning') + '">' + formatType(t.type) + '</span></td><td class="' + (t.type === 'expense' ? 'amount-expense' : 'amount-reserve') + '">' + formatAmount(t.amount) + '</td><td>' + t.transactionDate + '</td><td>' + (t.note || '-') + '</td></tr>';
+        });
+        html += '</tbody></table>';
+      }
+      html += '</div></div>';
+
+      // 储备金记录
+      html += '<div class="card" style="margin-bottom:16px"><div class="card-header"><h3>储备金记录</h3></div><div class="card-body">';
+      if (data.reserveFunds.length > 0) {
+        html += '<table><thead><tr><th>月份</th><th>储备金额</th><th>设置时间</th></tr></thead><tbody>';
+        data.reserveFunds.forEach(function (r) {
+          html += '<tr><td>' + r.month + '</td><td>' + formatAmount(r.amount) + '</td><td>' + formatDate(r.createdAt) + '</td></tr>';
+        });
+        html += '</tbody></table>';
+      } else {
+        html += '<p style="color:var(--text-secondary)">暂无储备金记录</p>';
+      }
+      html += '</div></div>';
+
+      // 用户账单列表（分页）
+      html += '<div class="card"><div class="card-header"><h3>全部账单</h3>';
+      html += '<div style="display:flex;gap:8px">';
+      html += '<select class="form-select" id="tx-month-filter" style="width:140px"><option value="">全部月份</option></select>';
+      html += '<select class="form-select" id="tx-type-filter" style="width:120px"><option value="">全部类型</option><option value="expense">支出</option><option value="reserve">储备金</option></select>';
+      html += '</div></div>';
+      html += '<div class="table-wrapper"><table><thead><tr><th>ID</th><th>分类</th><th>类型</th><th>金额</th><th>日期</th><th>备注</th><th>创建时间</th></tr></thead><tbody id="tx-tbody"></tbody></table></div>';
+      html += '<div class="pagination" id="tx-pagination"></div>';
+      html += '</div>';
+
+      document.getElementById('page-content').innerHTML = html;
+
+      // 绑定筛选事件
+      document.getElementById('tx-type-filter').addEventListener('change', function () { txPage = 1; loadUserTx(); });
+      loadUserTx();
+    }).catch(function (err) {
+      document.getElementById('page-content').innerHTML = '<div class="empty-state"><p>加载失败：' + err.message + '</p></div>';
+    });
+
+    function loadUserTx() {
+      var tbody = document.getElementById('tx-tbody');
+      showLoading(tbody);
+      var month = document.getElementById('tx-month-filter').value;
+      var type = document.getElementById('tx-type-filter').value;
+      var url = '/users/' + userId + '/transactions?page=' + txPage + '&pageSize=' + txPageSize;
+      if (month) url += '&month=' + month;
+      if (type) url += '&type=' + type;
+
+      apiFetch(url).then(function (data) {
+        if (data.list.length === 0) { showEmpty(tbody, '暂无账单'); document.getElementById('tx-pagination').innerHTML = ''; return; }
+        var html = '';
+        data.list.forEach(function (t) {
+          html += '<tr>';
+          html += '<td>' + t.id + '</td>';
+          html += '<td>' + t.categoryName + '</td>';
+          html += '<td><span class="badge ' + (t.type === 'expense' ? 'badge-danger' : 'badge-warning') + '">' + formatType(t.type) + '</span></td>';
+          html += '<td class="' + (t.type === 'expense' ? 'amount-expense' : 'amount-reserve') + '">' + formatAmount(t.amount) + '</td>';
+          html += '<td>' + t.transactionDate + '</td>';
+          html += '<td>' + (t.note || '-') + '</td>';
+          html += '<td>' + formatDate(t.createdAt) + '</td>';
+          html += '</tr>';
+        });
+        tbody.innerHTML = html;
+        renderPagination(document.getElementById('tx-pagination'), data.total, data.page, data.pageSize, function (p) {
+          txPage = p;
+          loadUserTx();
+        });
+      }).catch(function (err) {
+        showEmpty(tbody, '加载失败：' + err.message);
+      });
+    }
+
+    function detailItem(label, value) {
+      return '<div class="detail-item"><span class="label">' + label + '</span><span class="value">' + value + '</span></div>';
+    }
+
+    function summaryItem(label, value) {
+      return '<div class="summary-item"><span class="label">' + label + '</span><span class="value">' + value + '</span></div>';
+    }
+  </script>
+</body>
+</html>

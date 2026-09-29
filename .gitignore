@@ -18,3 +18,6 @@ npm-debug.log*
 
 # Test screenshots
 *.png
+
+# Weekly reports
+000文档机要/周报*.md

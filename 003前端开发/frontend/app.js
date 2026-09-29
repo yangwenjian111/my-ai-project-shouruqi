@@ -7,9 +7,9 @@
 const API_BASE = window.API_BASE || 'http://localhost:3000/api';
 
 /* ========== 认证状态管理 ========== */
-const TOKEN_KEY = 'token';
-const USER_KEY = 'currentUser';
-const LAST_USER_KEY = 'lastUser';
+const TOKEN_KEY = 'app_token';
+const USER_KEY = 'app_currentUser';
+const LAST_USER_KEY = 'app_lastUser';
 
 function getToken() { return localStorage.getItem(TOKEN_KEY); }
 function getCurrentUser() {
@@ -21,8 +21,8 @@ function setAuth(token, user) {
   localStorage.setItem(TOKEN_KEY, token);
   localStorage.setItem(USER_KEY, JSON.stringify(user));
   localStorage.setItem(LAST_USER_KEY, JSON.stringify({ username: user.username, avatar: user.avatar }));
-  localStorage.setItem('username', user.username);
-  localStorage.setItem('userAvatar', user.avatar);
+  localStorage.setItem('app_username', user.username);
+  localStorage.setItem('app_userAvatar', user.avatar);
 }
 
 function clearAuth() {
@@ -91,7 +91,10 @@ function renderAvatar(svgEl, avatar, size) {
 /* ========== 工具函数 ========== */
 function currentPage() {
   const path = window.location.pathname;
-  return path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+  let page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+  // serve 包会去掉 .html 后缀，补全以便匹配
+  if (page && !page.includes('.') && !page.endsWith('.html')) page = page + '.html';
+  return page;
 }
 
 function formatMoney(n) {
@@ -274,12 +277,13 @@ async function refreshProfile(target) {
   try {
     const user = await apiFetch('/auth/profile', { auth: true });
     localStorage.setItem(USER_KEY, JSON.stringify(user));
-    localStorage.setItem('username', user.username);
-    localStorage.setItem('userAvatar', user.avatar);
+    localStorage.setItem('app_username', user.username);
+    localStorage.setItem('app_userAvatar', user.avatar);
     if (target === 'settings') loadSettingsInfo();
     else loadUserInfo();
   } catch (err) {
-    if (err.status === 401) { clearAuth(); window.location.replace('login.html'); }
+    clearAuth();
+    window.location.replace('login.html');
   }
 }
 
@@ -801,13 +805,23 @@ function initNoteInput() {
 }
 
 /* ========== 页面初始化 & 路由守卫 ========== */
-(function initApp() {
+(async function initApp() {
   const page = currentPage();
   const protectedPages = ['dashboard.html', 'transactions.html', 'statistics.html', 'settings.html'];
 
-  if (protectedPages.indexOf(page) !== -1 && !isLoggedIn()) {
-    window.location.replace('login.html');
-    return;
+  if (protectedPages.indexOf(page) !== -1) {
+    if (!isLoggedIn()) {
+      window.location.replace('login.html');
+      return;
+    }
+    // 先验证 token 有效性，无效则跳登录，避免页面闪烁零值
+    try {
+      await apiFetch('/auth/profile', { auth: true });
+    } catch (err) {
+      clearAuth();
+      window.location.replace('login.html');
+      return;
+    }
   }
 
   if (page === 'login.html') {

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>储备金管理 - 后台管理系统</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="sidebar-brand"><h1>后台管理系统</h1><p>运维管理平台</p></div>
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>数据总览</a>
+        <a href="users.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>用户管理</a>
+        <a href="reserve-funds.html" class="nav-item active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>储备金管理</a>
+        <a href="transactions.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>账单数据</a>
+        <a href="categories.html" class="nav-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>分类管理</a>
+      </nav>
+    </aside>
+    <div class="main-content">
+      <header class="topbar">
+        <div class="topbar-left"><span class="topbar-title">储备金管理</span></div>
+        <div class="topbar-right">
+          <span class="topbar-user"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span id="admin-name">管理员</span></span>
+          <button class="btn-logout" onclick="handleLogout()">退出登录</button>
+        </div>
+      </header>
+      <div class="page-content">
+        <!-- 筛选栏 -->
+        <div class="filter-bar">
+          <input type="month" class="form-input" id="month-filter" style="width:160px">
+          <input type="text" class="form-input" id="user-filter" placeholder="用户ID筛选..." style="width:140px">
+          <select class="form-select" id="page-size-select" style="width:120px">
+            <option value="10">10条/页</option>
+            <option value="20" selected>20条/页</option>
+            <option value="50">50条/页</option>
+          </select>
+          <button class="btn btn-outline" onclick="loadSummary()">查看月度汇总</button>
+        </div>
+
+        <!-- 汇总区域 -->
+        <div id="summary-area"></div>
+
+        <!-- 表格 -->
+        <div class="card">
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th><th>用户名</th><th>昵称</th><th>月份</th><th>储备金额</th><th>实际支出</th><th>结余</th><th>设置时间</th>
+                </tr>
+              </thead>
+              <tbody id="rf-tbody"></tbody>
+            </table>
+          </div>
+          <div class="pagination" id="pagination"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toast" id="toast"></div>
+  <!-- 汇总弹窗 -->
+  <div class="modal-overlay" id="summary-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3>储备金月度汇总</h3>
+        <button class="modal-close" onclick="closeSummaryModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="summary-content"></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+  <script>
+    if (!checkAuth()) throw '';
+    var currentPage = 1;
+    var pageSize = 20;
+
+    function loadReserveFunds() {
+      var tbody = document.getElementById('rf-tbody');
+      showLoading(tbody);
+      var url = '/reserve-funds?page=' + currentPage + '&pageSize=' + pageSize;
+      var month = document.getElementById('month-filter').value;
+      var userId = document.getElementById('user-filter').value.trim();
+      if (month) url += '&month=' + month;
+      if (userId) url += '&userId=' + userId;
+
+      apiFetch(url).then(function (data) {
+        if (data.list.length === 0) { showEmpty(tbody, '暂无储备金记录'); document.getElementById('pagination').innerHTML = ''; return; }
+        var html = '';
+        data.list.forEach(function (r) {
+          var balanceClass = r.balance >= 0 ? 'amount-positive' : 'amount-expense';
+          html += '<tr>';
+          html += '<td>' + r.id + '</td>';
+          html += '<td>' + (r.username || '-') + '</td>';
+          html += '<td>' + (r.nickname || '-') + '</td>';
+          html += '<td>' + r.month + '</td>';
+          html += '<td>' + formatAmount(r.amount) + '</td>';
+          html += '<td class="amount-expense">' + formatAmount(r.actualExpense) + '</td>';
+          html += '<td class="' + balanceClass + '">' + formatAmount(r.balance) + '</td>';
+          html += '<td>' + formatDate(r.createdAt) + '</td>';
+          html += '</tr>';
+        });
+        tbody.innerHTML = html;
+        renderPagination(document.getElementById('pagination'), data.total, data.page, data.pageSize, function (p) {
+          currentPage = p;
+          loadReserveFunds();
+        });
+      }).catch(function (err) {
+        showEmpty(tbody, '加载失败：' + err.message);
+      });
+    }
+
+    function loadSummary() {
+      apiFetch('/reserve-funds/summary').then(function (data) {
+        var content = document.getElementById('summary-content');
+        if (data.length === 0) { content.innerHTML = '<p style="color:var(--text-secondary)">暂无汇总数据</p>'; }
+        else {
+          var html = '<table><thead><tr><th>月份</th><th>用户数</th><th>储备金总额</th><th>支出总额</th><th>结余</th></tr></thead><tbody>';
+          data.forEach(function (row) {
+            var balanceClass = row.balance >= 0 ? 'amount-positive' : 'amount-expense';
+            html += '<tr><td>' + row.month + '</td><td>' + row.userCount + '</td><td>' + formatAmount(row.totalReserve) + '</td><td class="amount-expense">' + formatAmount(row.totalExpense) + '</td><td class="' + balanceClass + '">' + formatAmount(row.balance) + '</td></tr>';
+          });
+          html += '</tbody></table>';
+          content.innerHTML = html;
+        }
+        document.getElementById('summary-modal').classList.add('show');
+      }).catch(function (err) { showToast(err.message, 'error'); });
+    }
+
+    function closeSummaryModal() {
+      document.getElementById('summary-modal').classList.remove('show');
+    }
+
+    document.getElementById('month-filter').addEventListener('change', function () { currentPage = 1; loadReserveFunds(); });
+    document.getElementById('user-filter').addEventListener('input', debounce(function () { currentPage = 1; loadReserveFunds(); }, 300));
+    document.getElementById('page-size-select').addEventListener('change', function () { pageSize = Number(this.value); currentPage = 1; loadReserveFunds(); });
+
+    loadReserveFunds();
+  </script>
+</body>
+</html>

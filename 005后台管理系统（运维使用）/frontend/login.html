@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理员登录 - 后台管理系统</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="login-page">
+    <div class="login-box">
+      <h1>后台管理系统</h1>
+      <p class="subtitle">运维管理平台，请使用管理员账号登录</p>
+
+      <div class="form-group">
+        <label class="form-label">管理员账号</label>
+        <input type="text" class="form-input" id="login-username" placeholder="请输入用户名" autocomplete="username">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">密码</label>
+        <input type="password" class="form-input" id="login-password" placeholder="请输入密码" autocomplete="current-password">
+      </div>
+
+      <button class="btn btn-primary" id="login-btn" onclick="handleLogin()">登 录</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+  <script>
+    // 已登录则跳转
+    if (isLoggedIn()) {
+      location.href = 'dashboard.html';
+    }
+
+    function handleLogin() {
+      var username = document.getElementById('login-username').value.trim();
+      var password = document.getElementById('login-password').value;
+      var btn = document.getElementById('login-btn');
+
+      if (!username) { showToast('请输入用户名', 'error'); return; }
+      if (!password) { showToast('请输入密码', 'error'); return; }
+
+      btn.disabled = true;
+      btn.textContent = '登录中...';
+
+      apiFetch('/auth/login', {
+        method: 'POST',
+        auth: false,
+        body: { username: username, password: password }
+      }).then(function (data) {
+        setAuth(data.token, data.admin);
+        showToast('登录成功', 'success');
+        setTimeout(function () { location.href = 'dashboard.html'; }, 500);
+      }).catch(function (err) {
+        showToast(err.message || '登录失败', 'error');
+        btn.disabled = false;
+        btn.textContent = '登 录';
+      });
+    }
+
+    // 回车登录
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') handleLogin();
+    });
+  </script>
+</body>
+</html>
