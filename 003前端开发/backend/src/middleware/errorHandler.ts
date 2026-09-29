@@ -1,0 +1,35 @@
+import { Request, Response, NextFunction } from 'express';
+
+export interface HttpError extends Error {
+  status?: number;
+  code?: number;
+}
+
+/** 404 处理：未匹配到任何路由 */
+export function notFoundHandler(req: Request, res: Response): void {
+  res.status(404).json({
+    code: -1,
+    message: `接口不存在: ${req.method} ${req.originalUrl}`,
+    data: null,
+  });
+}
+
+/**
+ * 全局错误处理中间件（必须保持 4 个参数签名，Express 才识别为错误处理器）
+ * - 4xx：返回业务错误信息
+ * - 5xx：隐藏内部细节，打印日志
+ */
+export function errorHandler(
+  err: HttpError,
+  req: Request,
+  res: Response,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  next: NextFunction,
+): void {
+  const status = err.status && err.status >= 400 && err.status < 600 ? err.status : 500;
+  const message = status === 500 ? '服务器内部错误' : err.message;
+  if (status >= 500) {
+    console.error('[ERROR]', err);
+  }
+  res.status(status).json({ code: err.code ?? -1, message, data: null });
+}
